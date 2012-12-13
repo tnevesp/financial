@@ -1,0 +1,32 @@
+<h3>Listing expenses (<%= @expenses.count-%>)</h3>
+
+<table class="table table-bordered table-hover table-striped">
+  <tr>
+    <th>Store</th>
+    <th>Cost</th>
+    <th>Comment</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @expenses.each do |expense| %>
+  <tr>
+    <td><%= expense.store.name %></td>
+    <td><p class='text-error'>- <%= number_to_currency(expense.cost) %></p></td>
+    <td><%= expense.comment %></td>
+    <td><%= link_to label_for_edit, edit_expense_path(expense) %></td>
+    <td><%= link_to label_for_destroy, expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+  <tr>
+    <td>&nbsp</td>
+    <td><p class='text-error'><strong>- <%= number_to_currency(Expense.sum(@expenses)) -%></strong></p></td>
+    <td>&nbsp</td>
+    <td>&nbsp</td>
+    <td>&nbsp</td>
+  </tr>
+</table>
+
+<br />
+
+<%= link_to 'New Expense', new_expense_path, { :class => "btn btn-primary" } %>

@@ -1,0 +1,23 @@
+<h3>Listing stores (<%= @stores.count-%>)</h3>
+
+ <%= content_tag 'p', notice, { :id => 'notice', :class => 'alert alert-success' } if notice -%>
+
+<table class="table table-bordered table-hover table-striped">
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stores.each do |store| %>
+  <tr>
+    <td><%= store.name %></td>
+    <td><%= link_to label_for_edit, edit_store_path(store) %></td>
+    <td><%= link_to label_for_destroy, store, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Store', new_store_path, :class => "btn btn-primary" %>

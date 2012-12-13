@@ -1,0 +1,33 @@
+<%= form_for(@expense, :class => 'form-horizontal') do |f| %>
+  <% if @expense.errors.any? %>
+    <div id="error_explanation" class="alert alert-error">
+      <h4><%= pluralize(@expense.errors.count, "error") %> prohibited this expense from being saved:</h4>
+
+      <ul>
+      <% @expense.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :store_id %><br />
+    <%= f.select :store_id, @stores.map { |store| [store.name, store.id] }, { :include_blank => '- select -', :selected => @expense.store_id }  %>
+  </div>
+  <div class="field">
+    <%= f.label :cost %><br />
+    <div class="input-prepend input-append">
+      <span class="add-on">R$</span>
+      <%= f.text_field :cost, { :id => "appendedPrependedInput", :class => 'span2' } %>
+    </div>
+    
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment, :rows => '5' %>
+  </div>
+  <div class="actions">
+    <%= f.submit :class => "btn btn-primary" %> <%= link_to 'Back', expenses_path, :class => 'btn' %>
+  </div>
+<% end %>
