@@ -11,4 +11,12 @@ module ApplicationHelper
   def label_for_destroy
   	content_tag('i', '', { :class => 'icon-trash' }) + " Destroy"
   end
+
+  def link_to_edit(klass)
+  	link_to label_for_edit, send("edit_#{klass.class.name.underscore}_path", klass), :class => 'btn btn-small'
+  end
+
+  def link_to_destroy(klass)
+  	link_to label_for_destroy, klass, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small'
+  end
 end

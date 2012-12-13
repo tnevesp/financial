@@ -6,7 +6,6 @@
     <th>Cost</th>
     <th>Comment</th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @expenses.each do |expense| %>
@@ -14,14 +13,19 @@
     <td><%= expense.store.name %></td>
     <td><p class='text-error'>- <%= number_to_currency(expense.cost) %></p></td>
     <td><%= expense.comment %></td>
-    <td><%= link_to label_for_edit, edit_expense_path(expense) %></td>
-    <td><%= link_to label_for_destroy, expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td>      
+      <div class="btn-toolbar">
+        <div class="btn-group">         
+          <%= link_to_edit expense -%>
+          <%= link_to_destroy expense -%>
+        </div>
+      </div>
+    </td>
   </tr>
 <% end %>
   <tr>
     <td>&nbsp</td>
     <td><p class='text-error'><strong>- <%= number_to_currency(Expense.sum(@expenses)) -%></strong></p></td>
-    <td>&nbsp</td>
     <td>&nbsp</td>
     <td>&nbsp</td>
   </tr>
