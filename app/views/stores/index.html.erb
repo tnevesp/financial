@@ -1,4 +1,7 @@
-<h3>Listing stores (<%= @stores.count-%>)</h3>
+<%- model_class = Store -%>
+<div>
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %> (<%= @stores.count-%>)</h1>
+</div>
 
  <%= content_tag 'p', notice, { :id => 'notice', :class => 'alert alert-success' } if notice -%>
 

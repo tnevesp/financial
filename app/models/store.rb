@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Store < ActiveRecord::Base
   attr_accessible :name
 

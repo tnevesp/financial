@@ -1,0 +1,10 @@
+Wed, 02 Jan 2013 14:09:57 -0200
+doc/README_FOR_APP	Tue, 11 Dec 2012 11:11:33 -0200
+app/controllers/application_controller.rb	Tue, 11 Dec 2012 11:11:33 -0200
+app/controllers/expenses_controller.rb	Thu, 13 Dec 2012 17:13:35 -0200
+app/controllers/stores_controller.rb	Wed, 12 Dec 2012 17:29:27 -0200
+app/helpers/application_helper.rb	Thu, 13 Dec 2012 09:05:31 -0200
+app/helpers/expenses_helper.rb	Tue, 11 Dec 2012 15:08:26 -0200
+app/helpers/stores_helper.rb	Tue, 11 Dec 2012 11:34:22 -0200
+app/models/expense.rb	Wed, 12 Dec 2012 16:58:15 -0200
+app/models/store.rb	Wed, 12 Dec 2012 15:09:59 -0200

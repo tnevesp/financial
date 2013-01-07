@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class StoresController < ApplicationController
   # GET /stores
   # GET /stores.json

@@ -1,4 +1,7 @@
-<h3>Listing expenses (<%= @expenses.count-%>)</h3>
+<%- model_class = Expense -%>
+<div>
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %> (<%= @expenses.count-%>)</h1>
+</div>
 
 <table class="table table-bordered table-hover table-striped">
   <tr>

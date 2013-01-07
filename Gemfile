@@ -6,6 +6,7 @@ gem 'rails', '3.2.9'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'magic_encoding'
 
 
 # Gems used only for assets and not required
@@ -28,6 +29,8 @@ group :test, :development do
   gem "rspec-core",         :git => "git://github.com/rspec/rspec-core.git"
   gem "rspec-expectations", :git => "git://github.com/rspec/rspec-expectations.git"
   gem "rspec-mocks",        :git => "git://github.com/rspec/rspec-mocks.git"
+  gem 'simplecov', :require => false
+  gem 'simplecov-rcov', :require => false
   gem 'factory_girl_rails'
   gem "debugger", "~> 1.2.2"
 end

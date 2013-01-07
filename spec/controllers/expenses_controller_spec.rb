@@ -24,7 +24,8 @@ describe ExpensesController do
   # Expense. As you add validations to Expense, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { "store_id" => "1" }
+    
+    { "store_id" => @store.id, "cost" => 49.99 }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -32,6 +33,10 @@ describe ExpensesController do
   # ExpensesController. Be sure to keep this updated too.
   def valid_session
     {}
+  end
+
+  before(:each) do
+    @store = FactoryGirl.create(:store, :id => 1, :name => 'New Store')
   end
 
   describe "GET index" do
@@ -81,7 +86,7 @@ describe ExpensesController do
 
       it "redirects to the created expense" do
         post :create, {:expense => valid_attributes}, valid_session
-        response.should redirect_to(Expense.last)
+        response.should redirect_to(expenses_url(:notice => 'Expense was successfully created.'))
       end
     end
 
@@ -123,7 +128,8 @@ describe ExpensesController do
       it "redirects to the expense" do
         expense = Expense.create! valid_attributes
         put :update, {:id => expense.to_param, :expense => valid_attributes}, valid_session
-        response.should redirect_to(expense)
+        response.should redirect_to(expenses_url(:notice => 'Expense was successfully updated.'))
+
       end
     end
 

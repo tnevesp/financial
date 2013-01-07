@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+['Debit card', 'Credit card', 'Money'].each do |payment_type|
+	PaymentType.find_or_create_by_name(payment_type)
+end
