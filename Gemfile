@@ -7,6 +7,8 @@ gem 'rails', '3.2.9'
 
 gem 'sqlite3'
 gem 'magic_encoding'
+gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails', :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
+gem "rails_best_practices"
 
 
 # Gems used only for assets and not required
@@ -33,6 +35,8 @@ group :test, :development do
   gem 'simplecov-rcov', :require => false
   gem 'factory_girl_rails'
   gem "debugger", "~> 1.2.2"
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
 end
 
 gem 'jquery-rails'

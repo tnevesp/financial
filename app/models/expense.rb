@@ -12,6 +12,8 @@ class Expense < ActiveRecord::Base
   validates :payment_type_id, { :presence => true }
   validates :cost, { :presence => true, :numericality => { :if => :is_cost_blank? } }
 
+  delegate :name, :to => :store, :prefix => true
+
   class << self
   	def sum(expenses)
   	  expenses.map(&:cost).sum

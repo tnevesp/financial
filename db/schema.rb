@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130104132001) do
+ActiveRecord::Schema.define(:version => 20130108161810) do
 
   create_table "expenses", :force => true do |t|
     t.integer  "store_id"
@@ -20,8 +20,11 @@ ActiveRecord::Schema.define(:version => 20130104132001) do
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
     t.integer  "payment_type_id"
-    t.datetime "payment_at"
+    t.date     "payment_at"
   end
+
+  add_index "expenses", ["payment_type_id"], :name => "index_expenses_on_payment_type_id"
+  add_index "expenses", ["store_id"], :name => "index_expenses_on_store_id"
 
   create_table "payment_types", :force => true do |t|
     t.string   "name"
@@ -29,10 +32,19 @@ ActiveRecord::Schema.define(:version => 20130104132001) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "stores", :force => true do |t|
+  create_table "store_types", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "stores", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "store_type_id"
+  end
+
+  add_index "stores", ["store_type_id"], :name => "index_stores_on_store_type_id"
 
 end

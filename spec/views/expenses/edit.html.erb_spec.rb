@@ -10,6 +10,7 @@ describe "expenses/edit" do
     ))
 
     assign(:stores, [stub_model(Store, :name => 'New One')])
+    assign(:payment_types, [stub_model(PaymentType, :name => 'Money')])
   end
 
   it "renders the edit expense form" do

@@ -5,22 +5,19 @@ describe "expenses/index" do
     store ||= Store.create(:name => 'New Store')
     assign(:expenses, [
       stub_model(Expense,
-        :store_id => store.id,
+        :store => store,
         :cost => "9.99",
         :comment => "Comment"
       ),
       stub_model(Expense,
-        :store_id => store.id,
+        :store => store,
         :cost => "9.99",
         :comment => "Comment"
       )
     ])
 
-    assign(:stores, [
-      stub_model(Store,
-        :name => 'New one'
-      )
-    ])
+    assign(:stores, [store])
+    assign(:payment_types, [stub_model(PaymentType, :name => 'Money')])
   end
 
   it "renders a list of expenses" do

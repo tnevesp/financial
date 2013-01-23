@@ -7,5 +7,6 @@ class CreateExpenses < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :expenses, :store_id
   end
 end

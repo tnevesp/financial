@@ -25,7 +25,7 @@ describe ExpensesController do
   # update the return value of this method accordingly.
   def valid_attributes
     
-    { "store_id" => @store.id, "cost" => 49.99 }
+    { "store_id" => @store.id, "cost" => 49.99, "payment_at" => Time.now, "payment_type_id" => @payment_type.id }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -37,6 +37,7 @@ describe ExpensesController do
 
   before(:each) do
     @store = FactoryGirl.create(:store, :id => 1, :name => 'New Store')
+    @payment_type = FactoryGirl.create(:payment_type)
   end
 
   describe "GET index" do
@@ -44,14 +45,6 @@ describe ExpensesController do
       expense = Expense.create! valid_attributes
       get :index, {}, valid_session
       assigns(:expenses).should eq([expense])
-    end
-  end
-
-  describe "GET show" do
-    it "assigns the requested expense as @expense" do
-      expense = Expense.create! valid_attributes
-      get :show, {:id => expense.to_param}, valid_session
-      assigns(:expense).should eq(expense)
     end
   end
 

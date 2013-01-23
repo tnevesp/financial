@@ -27,6 +27,7 @@ class ExpensesController < ApplicationController
   def new
     @expense = Expense.new
     @stores = Store.all
+    @payment_types = PaymentType.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,6 +39,7 @@ class ExpensesController < ApplicationController
   def edit
     @expense = Expense.find(params[:id])
     @stores = Store.all
+    @payment_types = PaymentType.all
   end
 
   # POST /expenses
@@ -45,13 +47,14 @@ class ExpensesController < ApplicationController
   def create
     @expense = Expense.new(params[:expense])
     @stores = Store.all
+    @payment_types = PaymentType.all
 
     respond_to do |format|
       if @expense.save
         format.html { redirect_to :action => 'index', notice: 'Expense was successfully created.' }
         format.json { render json: @expense, status: :created, location: @expense }
       else
-        format.html { render action: "new" }
+        format.html { render "new" }
         format.json { render json: @expense.errors, status: :unprocessable_entity }
       end
     end
@@ -62,13 +65,14 @@ class ExpensesController < ApplicationController
   def update
     @expense = Expense.find(params[:id])
     @stores = Store.all
+    @payment_types = PaymentType.all
 
     respond_to do |format|
       if @expense.update_attributes(params[:expense])
         format.html { redirect_to :action => 'index', notice: 'Expense was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render "edit" }
         format.json { render json: @expense.errors, status: :unprocessable_entity }
       end
     end

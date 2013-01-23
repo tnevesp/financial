@@ -4,10 +4,14 @@ require 'spec_helper'
 describe Store do
   subject { Store.create }
 
-  valid_attributes = { :name => 'Subway' }
+  valid_attributes = { :name => 'Subway' , :store_type_id => 1}
 
   it "should validate presence of" do
   	subject.error_on(:name).should == ["não pode ficar em branco"]
+  end
+
+  it "should validate presence of store type" do
+    subject.error_on(:store_type).should == ["não pode ficar em branco"]
   end
 
   it "should validate uniqueness of" do

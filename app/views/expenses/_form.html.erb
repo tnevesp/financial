@@ -1,10 +1,10 @@
-<%= form_for(@expense, :html => { :class => 'form-horizontal' } ) do |f| %>
-  <% if @expense.errors.any? %>
+<%= form_for(expense, :html => { :class => 'form-horizontal' } ) do |f| %>
+  <% if expense.errors.any? %>
     <div id="error_explanation" class="alert alert-error">
-      <h4><%= pluralize(@expense.errors.count, "error") %> prohibited this expense from being saved:</h4>
+      <h4><%= pluralize(expense.errors.count, "error") %> prohibited this expense from being saved:</h4>
 
       <ul>
-      <% @expense.errors.full_messages.each do |msg| %>
+      <% expense.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -14,7 +14,14 @@
   <div class="control-group">
     <%= f.label :store_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :store_id, @stores.map { |store| [store.name, store.id] }, { :include_blank => '- select -', :selected => @expense.store_id }  %>
+      <%= f.select :store_id, stores.map { |store| [store.name, store.id] }, { :include_blank => '- select -', :selected => expense.store_id }  %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :payment_type_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :payment_type_id, payment_types.map { |payment_type| [payment_type.name, payment_type.id] }, { :include_blank => '- select -', :selected => expense.payment_type_id }  %>
     </div>
   </div>
 
@@ -27,6 +34,17 @@
       </div>
     </div>
   </div>
+
+  <div class="control-group">
+    <%= f.label :payment_at, :class => 'control-label' %>
+    <div class="controls">
+      <div class="input-prepend input-append">
+        <span class="add-on"><i class="icon-calendar"></i></span>
+        <%= f.text_field :payment_at, { :id => 'datepicker', :readonly => true, :value => format_date(expense.payment_at) } %>
+      </div>
+    </div>
+  </div>
+
   <div class="control-group">
     <%= f.label :comment, :class => 'control-label' %>
     <div class="controls">
@@ -36,5 +54,13 @@
   <div class="form-actions">
     <%= f.submit :class => "btn btn-primary" %> <%= link_to 'Cancel', expenses_path, :class => 'btn' %>
   </div>
-
 <% end %>
+
+<script>
+  $(function(){
+    $('#datepicker').datepicker({
+      format: 'dd/mm/yyyy',
+      autoclose: true
+    });
+  });
+</script>

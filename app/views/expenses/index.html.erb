@@ -13,12 +13,12 @@
 
 <% @expenses.each do |expense| %>
   <tr>
-    <td><%= expense.store.name %></td>
-    <td><p class='text-error'>- <%= number_to_currency(expense.cost) %></p></td>
+    <td><%= expense.store_name -%></td>
+    <td><p class='text-error'>- <%= number_to_currency expense.cost %></p></td>
     <td><%= expense.comment %></td>
-    <td>      
+    <td>
       <div class="btn-toolbar">
-        <div class="btn-group">         
+        <div class="btn-group">
           <%= link_to_edit expense -%>
           <%= link_to_destroy expense -%>
         </div>

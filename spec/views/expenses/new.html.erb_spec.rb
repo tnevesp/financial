@@ -11,6 +11,8 @@ describe "expenses/new" do
     assign(:stores, [
       stub_model(Store, :name => 'New One')
     ])
+
+    assign(:payment_types, [stub_model(PaymentType, :name => 'Money')])
   end
 
   it "renders new expense form" do

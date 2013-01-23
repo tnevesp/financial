@@ -21,10 +21,11 @@ describe Expense do
   end
 
   it "should sum the costs" do
+    store = FactoryGirl.create(:store)
     expenses = [
-      FactoryGirl.create(:expense, :cost => 39.99),
-      FactoryGirl.create(:expense, :cost => 1.71),
-      FactoryGirl.create(:expense, :cost => 0.99)
+      FactoryGirl.create(:expense, :cost => 39.99, :store_id => store.id),
+      FactoryGirl.create(:expense, :cost => 1.71, :store_id => store.id),
+      FactoryGirl.create(:expense, :cost => 0.99, :store_id => store.id)
     ]
     Expense.sum(expenses).should == 42.69
   end

@@ -11,3 +11,18 @@
  *= require_self
  *= require_tree .
  */
+
+ /*= require bootstrap-datepicker*/
+
+.current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+.asc { 
+  background-image: url(/up_arrow.gif); 
+}
+
+.desc { 
+  background-image: url(/down_arrow.gif); 
+}

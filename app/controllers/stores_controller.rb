@@ -1,9 +1,11 @@
 # encoding: UTF-8
 class StoresController < ApplicationController
+
+  helper_method :sort_column, :sort_direction
   # GET /stores
   # GET /stores.json
   def index
-    @stores = Store.all
+    @stores = Store.order(sort_column + ' ' + sort_direction)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,6 +28,7 @@ class StoresController < ApplicationController
   # GET /stores/new.json
   def new
     @store = Store.new
+    @store_types = StoreType.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,19 +39,21 @@ class StoresController < ApplicationController
   # GET /stores/1/edit
   def edit
     @store = Store.find(params[:id])
+    @store_types = StoreType.all
   end
 
   # POST /stores
   # POST /stores.json
   def create
     @store = Store.new(params[:store])
+    @store_types = StoreType.all
 
     respond_to do |format|
       if @store.save
         format.html { redirect_to stores_url, notice: 'Store was successfully created.' }
         format.json { render json: @store, status: :created, location: @store }
       else
-        format.html { render action: "new" }
+        format.html { render "new" }
         format.json { render json: @store.errors, status: :unprocessable_entity }
       end
     end
@@ -58,13 +63,14 @@ class StoresController < ApplicationController
   # PUT /stores/1.json
   def update
     @store = Store.find(params[:id])
+    @store_types = StoreType.all
 
     respond_to do |format|
       if @store.update_attributes(params[:store])
         format.html { redirect_to stores_url, notice: 'Store was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render "edit" }
         format.json { render json: @store.errors, status: :unprocessable_entity }
       end
     end
@@ -81,4 +87,15 @@ class StoresController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def sort_column
+    Store.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+  end
+
 end

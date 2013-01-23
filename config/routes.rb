@@ -1,4 +1,7 @@
 Financial::Application.routes.draw do
+  resources :store_types
+
+
   resources :expenses
 
 
